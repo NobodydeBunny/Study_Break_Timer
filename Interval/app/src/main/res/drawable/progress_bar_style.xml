@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-  
-</selector>
+    <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <!-- Background Track -->
+        <item android:id="@android:id/background">
+            <shape android:shape="rectangle">
+                <corners android:radius="25dp" />
+                <solid android:color="#F6F6F8"/>
+            </shape>
+        </item>
+
+        <!-- Progress Fill -->
+
+        <item android:id="@android:id/progress">
+            <clip>
+                <shape android:shape="rectangle">
+                    <corners android:radius="25dp"/>
+                    <solid android:color="@color/primary"/>
+                </shape>
+            </clip>
+        </item>
+
+    </layer-list>
