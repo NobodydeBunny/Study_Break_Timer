@@ -7,5 +7,7 @@
     <color name="grey_hint">#9CA3AF</color>
     <color name="secondary">#8DA399</color>
     <color name="deepcharcoal">#2D2d2d</color>
+    <color name="blueGrey">#8e9aaf</color>
+    <color name="muteIndigo">#3e4a59</color>
 
 </resources>

@@ -12,14 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Interval">
         <activity
+            android:name=".Register_Screen"
+            android:exported="false" />
+        <activity
+            android:name=".Dashboard_Screen"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".login_screen"
             android:exported="false" />
