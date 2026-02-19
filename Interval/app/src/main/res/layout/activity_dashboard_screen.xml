@@ -39,20 +39,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titletxt" />
 
+    <!-- Timer Circle -->
+
     <ImageButton
         android:id="@+id/logoutBtn"
-        android:layout_width="34dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/logout_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintHorizontal_bias="0.942"
         app:layout_constraintStart_toEndOf="@+id/titletxt"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/secondary" />
-
-    <!-- Timer Circle -->
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/circularProgress"
@@ -107,9 +107,7 @@
     </com.google.android.material.card.MaterialCardView>
 
 
-    <!-- Start Session Button -->
 
-    <!-- Reset Button -->
 
     <LinearLayout
         android:id="@+id/linearLayout"
