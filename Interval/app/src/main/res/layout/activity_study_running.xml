@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Study_Running"
+    android:background="@color/background">
+
+    <TextView
+        android:id="@+id/titletxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/interfont"
+        android:letterSpacing="0.3"
+        android:text="INTERVAL"
+        android:textColor="@color/blueGrey"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/studyfocusing"
+        android:layout_width="72dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="68dp"
+        android:fontFamily="@font/interfont"
+        android:gravity="center"
+        android:text="Focusing"
+        android:textColor="@color/blueGrey"
+        android:textFontWeight="700"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titletxt" />
+
+    <TextView
+        android:id="@+id/sessionname"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:fontFamily="@font/interfont"
+        android:gravity="center"
+        android:text="Study Session"
+        android:textColor="@color/deepcharcoal"
+        android:textFontWeight="700"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/studycircularProgress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/studyfocusing" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/studycircularProgress"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="72dp"
+        app:indicatorColor="@color/secondary"
+        app:indicatorInset="0dp"
+        app:indicatorSize="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/studyfocusing"
+        app:trackColor="@color/primary"
+        app:trackThickness="2dp" />
+
+    <TextView
+        android:id="@+id/studytimerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25:00"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:textColor="@color/muteIndigo"
+        app:layout_constraintTop_toTopOf="@id/studycircularProgress"
+        app:layout_constraintBottom_toBottomOf="@id/studycircularProgress"
+        app:layout_constraintStart_toStartOf="@id/studycircularProgress"
+        app:layout_constraintEnd_toEndOf="@id/studycircularProgress"/>
+
+    <TextView
+        android:id="@+id/studysessionname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/interfont"
+        android:text="Study Session"
+        android:textColor="@color/blueGrey"
+        app:layout_constraintEnd_toEndOf="@+id/studycircularProgress"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/studycircularProgress"
+        app:layout_constraintTop_toBottomOf="@+id/studytimerText" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/studycircularProgress"
+        tools:layout_editor_absoluteX="16dp">
+
+
+        <ImageButton
+            android:id="@+id/btnStop"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/bg_circle_outline"
+            android:contentDescription="Stop"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_cancel"
+            android:tint="@color/grey_hint" />
+
+        <ImageButton
+            android:id="@+id/btnPause"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/bg_circle_primary"
+            android:contentDescription="Pause"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_pause"
+            android:tint="@android:color/white" />
+
+        <ImageButton
+            android:id="@+id/btnSkip"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="40dp"
+            android:background="@drawable/bg_circle_outline"
+            android:contentDescription="Skip"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_skip"
+            android:tint="@color/blueGrey" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Interval">
         <activity
+            android:name=".Break_Timer_Screen"
+            android:exported="false" />
+        <activity
+            android:name=".Study_Running"
+            android:exported="false" />
+        <activity
             android:name=".Register_Screen"
             android:exported="false" />
         <activity

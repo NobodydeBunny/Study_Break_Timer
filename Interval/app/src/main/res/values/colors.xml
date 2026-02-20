@@ -9,5 +9,9 @@
     <color name="deepcharcoal">#2D2d2d</color>
     <color name="blueGrey">#8e9aaf</color>
     <color name="muteIndigo">#3e4a59</color>
+    <color name="softstone">#e5e0d8</color>
+    <color name="softgrey">#e0e0e0</color>
+    <color name="light_grey">#E0E0E0</color>
+    <color name="very_light_grey">#F5F5F5</color>
 
 </resources>

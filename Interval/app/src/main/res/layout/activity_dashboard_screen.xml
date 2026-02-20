@@ -5,6 +5,277 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dashboard_Screen">
+    tools:context=".Dashboard_Screen"
+    android:background="@color/background">
+
+
+    <TextView
+        android:id="@+id/titletxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/interfont"
+        android:letterSpacing="0.3"
+        android:text="INTERVAL"
+        android:textColor="@color/secondary"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/welcometxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/interfont"
+        android:text="Welcome, user"
+        android:textFontWeight="700"
+        android:textColor="@color/muteIndigo"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titletxt" />
+
+    <!-- Timer Circle -->
+
+    <ImageButton
+        android:id="@+id/logoutBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/logout_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintStart_toEndOf="@+id/titletxt"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/secondary" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/circularProgress"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="8dp"
+        app:indicatorColor="@color/primary"
+        app:indicatorInset="0dp"
+        app:indicatorSize="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcometxt"
+        app:trackColor="@color/softgrey"
+        app:trackThickness="2dp" />
+
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25:00"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:textColor="@color/muteIndigo"
+        app:layout_constraintTop_toTopOf="@id/circularProgress"
+        app:layout_constraintBottom_toBottomOf="@id/circularProgress"
+        app:layout_constraintStart_toStartOf="@id/circularProgress"
+        app:layout_constraintEnd_toEndOf="@id/circularProgress"/>
+
+    <TextView
+        android:id="@+id/sessionname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/interfont"
+        android:text="Study Session"
+        android:textColor="@color/blueGrey"
+        app:layout_constraintEnd_toEndOf="@+id/circularProgress"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/circularProgress"
+        app:layout_constraintTop_toBottomOf="@+id/timerText" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardAddTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        android:backgroundTint="@color/white">
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:weightSum="2"
+        app:layout_constraintTop_toBottomOf="@+id/circularProgress"
+        tools:layout_editor_absoluteX="0dp">
+
+        <!-- Study Timer Card -->
+        <LinearLayout
+            android:id="@+id/layoutStudyTime"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_time_selector"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/interfont"
+                android:text="Study Time"
+                android:textColor="@color/muteIndigo"
+                android:textFontWeight="500"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtStudyTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/interfont"
+                android:text="25 min"
+                android:textColor="@color/primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- Break Timer Card -->
+        <LinearLayout
+            android:id="@+id/layoutBreakTime"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_time_selector"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/interfont"
+                android:text="Break Time"
+                android:textColor="@color/muteIndigo"
+                android:textFontWeight="500"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtBreakTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/interfont"
+                android:text="5 min"
+                android:textColor="@color/primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnStartSession"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/primary"
+        android:text="Start Session"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:cornerRadius="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:layout_editor_absoluteX="20dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnReset"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/very_light_grey"
+        app:strokeColor="@color/blueGrey"
+        app:strokeWidth="1dp"
+        android:text="Reset"
+        android:textAllCaps="false"
+        android:textColor="@color/muteIndigo"
+        android:textSize="16sp"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStartSession" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnReset"
+        app:layout_constraintVertical_bias="0.186">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAdd"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/very_light_grey"
+            android:text="Add"
+            android:textAllCaps="false"
+            android:textColor="@color/secondary"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/blueGrey"
+            android:textSize="14sp"
+            app:cornerRadius="7dp"
+            app:icon="@drawable/ic_add"
+            app:iconGravity="textStart"
+            app:iconPadding="5dp"
+            app:iconTint="@color/secondary" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnHistory"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/very_light_grey"
+            android:text="Sessions"
+            android:textAllCaps="false"
+            android:textColor="@color/secondary"
+            app:strokeColor="@color/blueGrey"
+            app:strokeWidth="1dp"
+            android:textSize="14sp"
+            app:cornerRadius="7dp"
+            app:icon="@drawable/ic_history"
+            app:iconGravity="textStart"
+            app:iconPadding="5dp"
+            app:iconTint="@color/secondary" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
