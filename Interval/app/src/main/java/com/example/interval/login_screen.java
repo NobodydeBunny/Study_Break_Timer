@@ -32,32 +32,30 @@ public class login_screen extends AppCompatActivity {
         TextInputEditText passwordEditText = findViewById(R.id.loginpassword);
 
         loginButton.setOnClickListener(v -> {
-            String username = usernameEditText.getText().toString().trim();
+            String email = usernameEditText.getText().toString().trim();
             String password = passwordEditText.getText().toString();
 
-            boolean isValid = true;
+            // Clear previous errors
+            usernameLayout.setError(null);
+            passwordLayout.setError(null);
 
-            // Username validation
-            if (username.isEmpty()) {
-                usernameLayout.setError("Username cannot be empty");
-                isValid = false;
-            }else if (username.contains(" ")) {
-                usernameLayout.setError("Username cannot contain spaces");
-                isValid = false;
-            }else {
-                usernameLayout.setError(null);
-            }
+            // Use AuthHelper to validate and attempt login
+            String result = AuthHelper.login(email, password);
 
-            // Password validation
-            if (password.isEmpty()) {
-                passwordLayout.setError("Password cannot be empty");
-                isValid = false;
+            if (result.equals("Login successful!")) {
+                // Login passed — go to Dashboard
+                startActivity(new Intent(login_screen.this, Dashboard_Screen.class));
+                finish();
             } else {
-                passwordLayout.setError(null);
-            }
+                // Show the error message from AuthHelper
+                Toast.makeText(login_screen.this, result, Toast.LENGTH_SHORT).show();
 
-            if(isValid){
-                checkLoginCredentials(username, password);
+                // Highlight the right field based on the error
+                if (result.contains("Email")) {
+                    usernameLayout.setError(result);
+                } else if (result.contains("Password")) {
+                    passwordLayout.setError(result);
+                }
             }
         });
 
@@ -79,15 +77,6 @@ public class login_screen extends AppCompatActivity {
             return insets;
         });
     }
-    private void checkLoginCredentials(String username, String password){
-        // MOCK database for testing purposes
-
-        if(username.equals("testuser") && password.equals("123456")){
-
-            startActivity(new Intent(this, Dashboard_Screen.class));
-            finish();
-        } else {
-            Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
-        }
-    }
+    // checkLoginCredentials() replaced by AuthHelper.login()
+    // See AuthHelper.java for the login logic.
 }

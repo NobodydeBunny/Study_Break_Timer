@@ -37,18 +37,18 @@ public class Register_Screen extends AppCompatActivity {
         backToLogin.setOnClickListener(v -> finish());
 
         registerBtn.setOnClickListener(v -> {
-            String u = username.getText().toString().trim();
+            String email = username.getText().toString().trim();
             String p = password.getText().toString();
             String cp = confirmPassword.getText().toString();
 
-            if(u.isEmpty() || p.isEmpty() || cp.isEmpty()){
-                Toast.makeText(Register_Screen.this, "Fill all fields", Toast.LENGTH_SHORT).show();
-            }
-            else if(!p.equals(cp)){
-                Toast.makeText(Register_Screen.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                Toast.makeText(Register_Screen.this, "Account registered (mock)", Toast.LENGTH_SHORT).show();
+            // Use AuthHelper to validate and register
+            String result = AuthHelper.register(email, p, cp);
+
+            // Show the result message (success or error)
+            Toast.makeText(Register_Screen.this, result, Toast.LENGTH_SHORT).show();
+
+            // If registration was successful, go back to Login screen
+            if (result.equals("Registration successful!")) {
                 finish();
             }
         });
