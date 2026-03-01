@@ -1,6 +1,7 @@
 package com.example.interval;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -34,6 +35,14 @@ public class login_screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login_screen);
+
+        SharedPreferences prefs = getSharedPreferences("session", MODE_PRIVATE);
+        boolean isLoggedIn = prefs.getBoolean("is_logged_in", false);
+
+        if (isLoggedIn) {
+            startActivity(new Intent(this, Dashboard_Screen.class));
+            finish();
+        }
 
         Button loginButton = findViewById(R.id.loginBtn);
         TextView createAccount = findViewById(R.id.createAccount);
@@ -97,12 +106,16 @@ public class login_screen extends AppCompatActivity {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(
-                "SELECT * FROM users WHERE username = ? AND password_hash = ?",
+                "SELECT id FROM users WHERE username = ? AND password_hash = ?",
                 new String[]{username, hashedPassword}
         );
 
-        if (cursor.getCount() > 0) {
-            //go to dashboard
+        if (cursor.moveToFirst()) {
+
+            int userId = cursor.getInt(0);
+
+            saveUserSession(userId);
+
             cursor.close();
             startActivity(new Intent(this, Dashboard_Screen.class));
             finish();
@@ -111,6 +124,13 @@ public class login_screen extends AppCompatActivity {
             showSnackbar("Incorrect username or password");
         }
     }
+    private void saveUserSession(int userId) {
+        SharedPreferences prefs = getSharedPreferences("session", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("user_id", userId);
+        editor.apply();
+    }
+
 
     private void showSnackbar(String message) {
         Snackbar snackbar = Snackbar.make(findViewById(R.id.main), message, Snackbar.LENGTH_LONG);
