@@ -1,6 +1,8 @@
 package com.example.interval;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,10 +15,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.security.MessageDigest;
+
 public class login_screen extends AppCompatActivity {
+
+    DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +37,7 @@ public class login_screen extends AppCompatActivity {
         TextInputLayout passwordLayout = findViewById(R.id.passwordLayout);
         TextInputEditText usernameEditText = findViewById(R.id.loginusername);
         TextInputEditText passwordEditText = findViewById(R.id.loginpassword);
+        dbHelper = new DatabaseHelper(this);
 
         loginButton.setOnClickListener(v -> {
             String username = usernameEditText.getText().toString().trim();
@@ -37,7 +45,6 @@ public class login_screen extends AppCompatActivity {
 
             boolean isValid = true;
 
-            // Username validation
             if (username.isEmpty()) {
                 usernameLayout.setError("Username cannot be empty");
                 isValid = false;
@@ -48,7 +55,6 @@ public class login_screen extends AppCompatActivity {
                 usernameLayout.setError(null);
             }
 
-            // Password validation
             if (password.isEmpty()) {
                 passwordLayout.setError("Password cannot be empty");
                 isValid = false;
@@ -71,23 +77,54 @@ public class login_screen extends AppCompatActivity {
         });
 
 
-
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
     }
-    private void checkLoginCredentials(String username, String password){
-        // MOCK database for testing purposes
+    private void checkLoginCredentials(String username, String password) {
+        String hashedPassword = hashPassword(password);
 
-        if(username.equals("testuser") && password.equals("123456")){
+        if (hashedPassword == null) {
+            showSnackbar("Something went wrong. Please try again.");
+            return;
+        }
 
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM users WHERE username = ? AND password_hash = ?",
+                new String[]{username, hashedPassword}
+        );
+
+        if (cursor.getCount() > 0) {
+            //go to dashboard
+            cursor.close();
             startActivity(new Intent(this, Dashboard_Screen.class));
             finish();
         } else {
-            Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+            cursor.close();
+            showSnackbar("Incorrect username or password");
+        }
+    }
+
+    private void showSnackbar(String message) {
+        Snackbar.make(findViewById(R.id.main), message, Snackbar.LENGTH_LONG)
+                .setBackgroundTint(getColor(R.color.primary))
+                .setTextColor(getColor(R.color.background))
+                .show();
+    }
+
+    private String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hash = md.digest(password.getBytes());
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hash) hexString.append(String.format("%02x", b));
+            return hexString.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }
