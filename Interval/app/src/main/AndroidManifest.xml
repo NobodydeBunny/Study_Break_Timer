@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Interval">
         <activity
+            android:name=".Add_Session"
+            android:exported="false" />
+        <activity
             android:name=".Break_Timer_Screen"
             android:exported="false" />
         <activity
