@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    tools:context=".Add_Session">
+    tools:context=".Edit_Session"
+    android:background="@color/background">
 
     <TextView
         android:id="@+id/titletxt"
@@ -22,14 +23,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/addsessiontittle"
+        android:id="@+id/editsessiontittle"
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/interfont"
         android:gravity="center"
-        android:text="ADD SESSION"
-        android:textColor="@color/muteIndigo"
+        android:text="EDIT SESSION"
+        android:textColor="@color/secondary"
         android:letterSpacing="0.1"
         android:textFontWeight="700"
         android:textSize="20sp"
@@ -51,15 +52,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addsessiontittle" />
+        app:layout_constraintTop_toBottomOf="@+id/editsessiontittle" />
 
     <EditText
         android:id="@+id/etSessionName"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+
         android:background="@android:color/transparent"
         android:gravity="center"
         android:hint="Study Session"
+        android:textColorHint="@color/grey_hint"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -141,7 +144,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="24dp"
         android:gravity="center"
-        android:text="BREAK DURATION "
+        android:text="BREAK DURATION"
         android:textColor="@color/blueGrey"
         android:textSize="15sp"
         android:letterSpacing="0.1"
@@ -203,8 +206,8 @@
         android:text="SAVE SESSION"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="16sp"
         android:letterSpacing="0.1"
+        android:textSize="16sp"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -221,8 +224,8 @@
         android:textAllCaps="false"
         android:textColor="@color/muteIndigo"
         android:textSize="16sp"
-        android:letterSpacing="0.1"
         app:cornerRadius="10dp"
+        android:letterSpacing="0.1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -230,6 +233,5 @@
         app:layout_constraintVertical_bias="0.0"
         app:strokeColor="@color/blueGrey"
         app:strokeWidth="1dp" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
