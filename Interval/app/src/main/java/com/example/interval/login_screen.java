@@ -3,9 +3,13 @@ package com.example.interval;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -109,10 +113,23 @@ public class login_screen extends AppCompatActivity {
     }
 
     private void showSnackbar(String message) {
-        Snackbar.make(findViewById(R.id.main), message, Snackbar.LENGTH_LONG)
-                .setBackgroundTint(getColor(R.color.primary))
-                .setTextColor(getColor(R.color.background))
-                .show();
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.main), message, Snackbar.LENGTH_LONG);
+        View snackbarView = snackbar.getView();
+
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) snackbarView.getLayoutParams();
+        params.gravity = Gravity.TOP;
+        params.setMargins(20, 50, 20, 0);
+        snackbarView.setLayoutParams(params);
+
+        GradientDrawable background = new GradientDrawable();
+        background.setShape(GradientDrawable.RECTANGLE);
+        background.setCornerRadius(80f);
+        snackbar.setBackgroundTintList(null);
+        background.setColor(Color.parseColor("#FF0000"));
+        snackbarView.setBackground(background);
+        snackbar.setTextColor(Color.parseColor("#FFFFFF"));
+
+        snackbar.show();
     }
 
     private String hashPassword(String password) {
