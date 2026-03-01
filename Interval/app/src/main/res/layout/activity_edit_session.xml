@@ -30,7 +30,7 @@
         android:fontFamily="@font/interfont"
         android:gravity="center"
         android:text="EDIT SESSION"
-        android:textColor="@color/secondary"
+        android:textColor="@color/muteIndigo"
         android:letterSpacing="0.1"
         android:textFontWeight="700"
         android:textSize="20sp"
