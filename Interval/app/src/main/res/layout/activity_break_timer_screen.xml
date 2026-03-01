@@ -29,10 +29,11 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/interfont"
         android:gravity="center"
-        android:text="Break Session"
+        android:letterSpacing="0.1"
+        android:text="BREAK SESSION"
         android:textColor="@color/secondary"
         android:textFontWeight="700"
-        android:textSize="15sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/breakcircularProgress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -44,7 +45,7 @@
         android:id="@+id/breakcircularProgress"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="92dp"
         app:indicatorColor="@color/primary"
         app:indicatorInset="0dp"
         app:indicatorSize="250dp"
@@ -59,7 +60,7 @@
         android:id="@+id/breaktimerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="25:00"
+        android:text="05:00"
         android:textColor="@color/muteIndigo"
         android:textSize="50sp"
         android:textStyle="bold"
@@ -71,10 +72,11 @@
 
     <TextView
         android:id="@+id/breaksessionname"
-        android:layout_width="100dp"
-        android:layout_height="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/interfont"
-        android:text="Break Session"
+        android:letterSpacing="0.1"
+        android:text="BREAK SESSION"
         android:textColor="@color/blueGrey"
         app:layout_constraintBottom_toBottomOf="@+id/breakcircularProgress"
         app:layout_constraintEnd_toEndOf="@+id/breakcircularProgress"
@@ -82,73 +84,12 @@
         app:layout_constraintTop_toBottomOf="@+id/breaktimerText"
         app:layout_constraintVertical_bias="0.22" />
 
-    <TextView
-        android:id="@+id/total"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/interfont"
-        android:gravity="center"
-        android:text="Total"
-        android:textColor="@color/blueGrey"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
-        app:layout_constraintStart_toEndOf="@+id/sessiondetail"
-        app:layout_constraintTop_toBottomOf="@+id/breakcircularProgress"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/totalno"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/interfont"
-        android:gravity="center"
-        android:text="50m"
-        android:textColor="@color/muteIndigo"
-        android:textFontWeight="800"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.077"
-        app:layout_constraintStart_toEndOf="@+id/sessiondetailno"
-        app:layout_constraintTop_toBottomOf="@+id/total" />
-
-    <TextView
-        android:id="@+id/sessiondetail"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/interfont"
-        android:gravity="center"
-        android:text="Session"
-        android:textColor="@color/blueGrey"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/breakcircularProgress" />
-
-    <TextView
-        android:id="@+id/sessiondetailno"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/interfont"
-        android:gravity="center"
-        android:text="1 of 4"
-        android:textColor="@color/muteIndigo"
-        android:textFontWeight="800"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sessiondetail" />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSkipBreak"
         style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginBottom="104dp"
         android:layout_weight="1"
         android:backgroundTint="@color/very_light_grey"
         android:fontFamily="@font/interfont"
@@ -166,8 +107,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/breakcircularProgress"
+        app:layout_constraintVertical_bias="1.0"
         app:strokeColor="@color/blueGrey"
         app:strokeWidth="1dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="140dp"
+        android:layout_height="130dp"
+        android:tint="@color/secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/breakcircularProgress"
+        app:layout_constraintVertical_bias="0.173"
+        app:srcCompat="@drawable/ic_self" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
