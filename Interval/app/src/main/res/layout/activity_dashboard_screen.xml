@@ -39,7 +39,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titletxt" />
 
-    <!-- Timer Circle -->
 
     <ImageButton
         android:id="@+id/logoutBtn"
@@ -120,7 +119,6 @@
         app:layout_constraintTop_toBottomOf="@+id/circularProgress"
         tools:layout_editor_absoluteX="0dp">
 
-        <!-- Study Timer Card -->
         <LinearLayout
             android:id="@+id/layoutStudyTime"
             android:layout_width="0dp"
@@ -154,7 +152,6 @@
 
         </LinearLayout>
 
-        <!-- Break Timer Card -->
         <LinearLayout
             android:id="@+id/layoutBreakTime"
             android:layout_width="0dp"
