@@ -12,14 +12,14 @@
         android:id="@+id/titletxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/interfont"
         android:letterSpacing="0.3"
         android:text="INTERVAL"
         android:textColor="@color/blueGrey"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,7 +27,7 @@
         android:id="@+id/studyfocusing"
         android:layout_width="72dp"
         android:layout_height="29dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="48dp"
         android:fontFamily="@font/interfont"
         android:gravity="center"
         android:text="Focusing"
@@ -45,7 +45,7 @@
         android:layout_height="30dp"
         android:fontFamily="@font/interfont"
         android:gravity="center"
-        android:text="Study Session"
+        android:text="STUDY SESSION"
         android:textColor="@color/deepcharcoal"
         android:textFontWeight="700"
         android:textSize="15sp"
@@ -118,7 +118,7 @@
             android:tint="@color/grey_hint" />
 
         <ImageButton
-            android:id="@+id/btnPause"
+            android:id="@+id/btnPauseStart"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:background="@drawable/bg_circle_primary"
