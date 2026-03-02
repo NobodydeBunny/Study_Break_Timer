@@ -115,7 +115,7 @@
             android:contentDescription="Stop"
             android:scaleType="centerInside"
             android:src="@drawable/ic_cancel"
-            android:tint="@color/grey_hint" />
+            app:tint="@color/grey_hint" />
 
         <ImageButton
             android:id="@+id/btnPauseStart"
@@ -125,7 +125,7 @@
             android:contentDescription="Pause"
             android:scaleType="centerInside"
             android:src="@drawable/ic_pause"
-            android:tint="@android:color/white" />
+            app:tint="@android:color/white" />
 
         <ImageButton
             android:id="@+id/btnSkip"
@@ -136,7 +136,7 @@
             android:contentDescription="Skip"
             android:scaleType="centerInside"
             android:src="@drawable/ic_skip"
-            android:tint="@color/blueGrey" />
+            app:tint="@color/blueGrey" />
 
     </LinearLayout>
 

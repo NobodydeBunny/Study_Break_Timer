@@ -38,7 +38,7 @@ public class Add_Session extends AppCompatActivity {
         NumberPicker picker = view.findViewById(R.id.minutePicker);
 
         picker.setMinValue(1);
-        picker.setMaxValue(180);   // up to 3 hours if you want
+        picker.setMaxValue(60);
         picker.setValue(25);
 
         AlertDialog dialog = new AlertDialog.Builder(this)

@@ -30,10 +30,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/interfont"
-        android:text="Welcome, user"
+        android:text="WELCOME, user"
         android:textFontWeight="700"
         android:textColor="@color/muteIndigo"
         android:textSize="15sp"
+        android:letterSpacing="0.1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,13 +58,13 @@
         android:id="@+id/circularProgress"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:layout_marginTop="8dp"
-        app:indicatorColor="@color/primary"
-        app:indicatorInset="0dp"
-        app:indicatorSize="250dp"
+        android:layout_marginTop="24dp"
         android:indeterminate="false"
         android:max="100"
         android:progress="100"
+        app:indicatorColor="@color/primary"
+        app:indicatorInset="0dp"
+        app:indicatorSize="250dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,13 +77,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="25:00"
+        android:textColor="@color/muteIndigo"
         android:textSize="50sp"
         android:textStyle="bold"
-        android:textColor="@color/muteIndigo"
-        app:layout_constraintTop_toTopOf="@id/circularProgress"
         app:layout_constraintBottom_toBottomOf="@id/circularProgress"
+        app:layout_constraintEnd_toEndOf="@id/circularProgress"
         app:layout_constraintStart_toStartOf="@id/circularProgress"
-        app:layout_constraintEnd_toEndOf="@id/circularProgress"/>
+        app:layout_constraintTop_toTopOf="@id/circularProgress"
+        app:layout_constraintVertical_bias="0.431" />
 
     <TextView
         android:id="@+id/sessionname"
@@ -107,9 +109,6 @@
         android:backgroundTint="@color/white">
 
     </com.google.android.material.card.MaterialCardView>
-
-
-
 
     <LinearLayout
         android:id="@+id/linearLayout"

@@ -32,16 +32,17 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 public class Dashboard_Screen extends AppCompatActivity {
 
+    private TextView tvStudyTime, tvBreakTime, tvSessionName;
+
+    private int studyMinutes = 25;
+    private int breakMinutes = 5;
+    private String sessionName = "Study Session";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_dashboard_screen);
-
-        ImageButton logoutbtn = findViewById(R.id.logoutBtn);
-        TextView Welcometxt = findViewById(R.id.welcometxt);
-
-
         SharedPreferences prefs = getSharedPreferences("session", MODE_PRIVATE);
         int userId = prefs.getInt("user_id", -1);
 
@@ -51,10 +52,28 @@ public class Dashboard_Screen extends AppCompatActivity {
         }
 
         String username = getUsername(userId);
-        Welcometxt.setText("Welcome, "+username);
+        ImageButton logoutbtn = findViewById(R.id.logoutBtn);
+        TextView Welcometxt = findViewById(R.id.welcometxt);
+        tvStudyTime = findViewById(R.id.txtStudyTime);
+        tvBreakTime = findViewById(R.id.txtBreakTime);
+        tvSessionName = findViewById(R.id.sessionname);
+        MaterialButton btnReset = findViewById(R.id.btnReset);
+        MaterialButton btnStart = findViewById(R.id.btnStartSession);
+        MaterialButton btnAdd = findViewById(R.id.btnAdd);
+        MaterialButton btnHistory = findViewById(R.id.btnHistory);
 
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        SessionModel session = dbHelper.getLatestSession(userId);
+
+        Welcometxt.setText("WELCOME, "+username);
+
+        if (session != null) {
+            studyMinutes = session.getFocusTime();
+            breakMinutes = session.getRestTime();
+            sessionName = session.getTitle();
+        }
+        updateUI();
         animation();
-
 
         logoutbtn.setOnClickListener(v ->{
             warning_dialog.show(
@@ -70,6 +89,31 @@ public class Dashboard_Screen extends AppCompatActivity {
             );
         });
 
+        btnReset.setOnClickListener(v -> {
+            studyMinutes = 25;
+            breakMinutes = 5;
+            sessionName = "Study Session";
+
+            updateUI();
+        });
+
+        btnStart.setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard_Screen.this, Study_Running.class);
+
+            intent.putExtra("studyTime", studyMinutes);
+            intent.putExtra("breakTime", breakMinutes);
+            intent.putExtra("sessionName", sessionName);
+
+            startActivity(intent);
+        });
+
+        btnAdd.setOnClickListener(v -> {
+            startActivity(new Intent(this, Add_Session.class));
+        });
+
+        btnHistory.setOnClickListener(v -> {
+            startActivity(new Intent(this, Session_list.class));
+        });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -78,10 +122,17 @@ public class Dashboard_Screen extends AppCompatActivity {
         });
     }
     // Functions ----------------------------------------------------------------------->
+    private void updateUI() {
+
+        tvStudyTime.setText(studyMinutes + " min");
+        tvBreakTime.setText(breakMinutes + " min");
+        tvSessionName.setText(sessionName);
+    }
+
     private void logoutUser() {
         SharedPreferences prefs = getSharedPreferences("session", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.clear();   // removes user_id and login state
+        editor.clear();
         editor.apply();
 
         Intent intent = new Intent(Dashboard_Screen.this, login_screen.class);

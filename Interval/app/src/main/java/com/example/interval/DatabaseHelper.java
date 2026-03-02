@@ -1,6 +1,7 @@
 package com.example.interval;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -16,7 +17,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        // Enable foreign keys
         db.execSQL("PRAGMA foreign_keys=ON");
 
         // Users table
@@ -39,6 +39,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_USERS_TABLE);
         db.execSQL(CREATE_SESSIONS_TABLE);
+    }
+    public void insertSession(int userId, String title, int focusTime, int restTime, String date) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query = "INSERT INTO sessions (user_id, title, focus_time, rest_time, date) " +
+                "VALUES (?, ?, ?, ?, ?)";
+
+        db.execSQL(query, new Object[]{
+                userId,
+                title,
+                focusTime,
+                restTime,
+                date
+        });
+
+        db.close();
+    }
+    public SessionModel getLatestSession(int userId) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM sessions WHERE user_id = ? ORDER BY id DESC LIMIT 1";
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(userId)});
+
+        if (cursor.moveToFirst()) {
+
+            String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+            int focus = cursor.getInt(cursor.getColumnIndexOrThrow("focus_time"));
+            int rest = cursor.getInt(cursor.getColumnIndexOrThrow("rest_time"));
+
+            cursor.close();
+            db.close();
+
+            return new SessionModel(title, focus, rest);
+        }
+
+        cursor.close();
+        db.close();
+
+        return null;
     }
 
     @Override
