@@ -202,7 +202,6 @@ Run → Run 'app'  (Shift + F10)
 | **Raashidh Musaj** | *Project Documentation & Research* |
 | **H.A.T.M.Hettiarachchi** | *Quality Assurance & Testing* |
 
-> 📌 *Update this section with your actual team member names before submission.*
 
 ---
 
@@ -223,11 +222,10 @@ Study_Break_Timer/
 
 ## 📸 Screenshots
 
-> *(Add screenshots of your app screens here — Login, Dashboard, Study Timer, Break Timer, Session List)*
 
 | Login | Dashboard | Study Timer | Break Timer | Session History |
-|---|---|---|---|---|
-| *(img)* | *(img)* | *(img)* | *(img)* | *(img)* |
+|:---:|:---:|:---:|:---:|:---:|
+| <img src="/Screenshots/LoginScreen.png" width="160"> | <img src="/Screenshots/DashboardScreen.png" width="160"> | <img src="/Screenshots/StudyRunning.png" width="160"> | <img src="/Screenshots/BreakRunning.png" width="160"> | <img src="/Screenshots/SessionList.png" width="160"> |
 
 ---
 
