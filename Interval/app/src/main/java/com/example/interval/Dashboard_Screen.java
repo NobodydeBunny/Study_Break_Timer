@@ -1,10 +1,20 @@
 package com.example.interval;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -18,6 +28,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 public class Dashboard_Screen extends AppCompatActivity {
 
@@ -42,6 +53,8 @@ public class Dashboard_Screen extends AppCompatActivity {
         String username = getUsername(userId);
         Welcometxt.setText("Welcome, "+username);
 
+        animation();
+
 
         logoutbtn.setOnClickListener(v ->{
             warning_dialog.show(
@@ -64,7 +77,7 @@ public class Dashboard_Screen extends AppCompatActivity {
             return insets;
         });
     }
-
+    // Functions ----------------------------------------------------------------------->
     private void logoutUser() {
         SharedPreferences prefs = getSharedPreferences("session", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -76,7 +89,6 @@ public class Dashboard_Screen extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
     private String getUsername(int userId) {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -94,5 +106,41 @@ public class Dashboard_Screen extends AppCompatActivity {
 
         cursor.close();
         return username;
+    }
+
+    private void animation() {
+
+        CircularProgressIndicator circularProgress = findViewById(R.id.circularProgress);
+
+        ObjectAnimator breathing = ObjectAnimator.ofPropertyValuesHolder(
+                circularProgress,
+                PropertyValuesHolder.ofFloat(View.SCALE_X, 0.9f, 1.05f),
+                PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.9f, 1.05f)
+        );
+        breathing.setDuration(5000); // 5 seconds per breath
+        breathing.setRepeatMode(ValueAnimator.REVERSE);
+        breathing.setRepeatCount(ValueAnimator.INFINITE);
+        breathing.setInterpolator(new AccelerateDecelerateInterpolator());
+
+        ObjectAnimator ensoGlow = ObjectAnimator.ofFloat(circularProgress, View.ALPHA, 0.4f, 0.8f);
+        ensoGlow.setDuration(5000);
+        ensoGlow.setRepeatMode(ValueAnimator.REVERSE);
+        ensoGlow.setRepeatCount(ValueAnimator.INFINITE);
+        ensoGlow.setInterpolator(new AccelerateDecelerateInterpolator());
+
+        ValueAnimator mist = ValueAnimator.ofFloat(0.0f, 0.15f);
+        mist.setDuration(2000);
+        mist.setRepeatMode(ValueAnimator.REVERSE);
+        mist.setRepeatCount(ValueAnimator.INFINITE);
+        mist.addUpdateListener(animation -> {
+            float offset = (float) animation.getAnimatedValue();
+            circularProgress.setAlpha(ensoGlow.getAnimatedFraction() * 0.4f + 0.4f + offset);
+        });
+
+        AnimatorSet zenSet = new AnimatorSet();
+        zenSet.playTogether(breathing, ensoGlow);
+        zenSet.start();
+        mist.start();
+
     }
 }

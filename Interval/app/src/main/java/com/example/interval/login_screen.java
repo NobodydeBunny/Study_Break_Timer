@@ -88,6 +88,23 @@ public class login_screen extends AppCompatActivity {
             return insets;
         });
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        TextInputEditText usernameEditText = findViewById(R.id.loginusername);
+        TextInputEditText passwordEditText = findViewById(R.id.loginpassword);
+
+        usernameEditText.setText("");
+        passwordEditText.setText("");
+
+        usernameEditText.clearFocus();
+        passwordEditText.clearFocus();
+
+        findViewById(R.id.main).requestFocus();
+    }
     private void checkLoginCredentials(String username, String password) {
         String hashedPassword = hashPassword(password);
 
