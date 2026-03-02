@@ -1,6 +1,7 @@
 package com.example.interval;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 
@@ -17,7 +18,9 @@ public class SplashScreen extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_splash_screen);
 
-        // Now the layout exists, so we can find the ProgressBar
+        SharedPreferences prefs = getSharedPreferences("session", MODE_PRIVATE);
+        int userId = prefs.getInt("user_id", -1);
+
         progressBar = findViewById(R.id.loading_bar);
 
         new Thread(() -> {
@@ -33,7 +36,11 @@ public class SplashScreen extends AppCompatActivity {
             }
 
             runOnUiThread(() -> {
-                startActivity(new Intent(SplashScreen.this, login_screen.class));
+                if (userId != -1) {
+                    startActivity(new Intent(SplashScreen.this, Dashboard_Screen.class));
+                } else {
+                    startActivity(new Intent(SplashScreen.this, login_screen.class));
+                }
                 finish();
             });
 

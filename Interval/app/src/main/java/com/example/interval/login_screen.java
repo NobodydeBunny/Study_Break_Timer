@@ -36,14 +36,6 @@ public class login_screen extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login_screen);
 
-        SharedPreferences prefs = getSharedPreferences("session", MODE_PRIVATE);
-        boolean isLoggedIn = prefs.getBoolean("is_logged_in", false);
-
-        if (isLoggedIn) {
-            startActivity(new Intent(this, Dashboard_Screen.class));
-            finish();
-        }
-
         Button loginButton = findViewById(R.id.loginBtn);
         TextView createAccount = findViewById(R.id.createAccount);
         TextInputLayout usernameLayout = findViewById(R.id.usernameLayout);
