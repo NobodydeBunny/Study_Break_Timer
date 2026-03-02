@@ -1,9 +1,13 @@
 package com.example.interval;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -24,6 +28,20 @@ public class Dashboard_Screen extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard_screen);
 
         ImageButton logoutbtn = findViewById(R.id.logoutBtn);
+        TextView Welcometxt = findViewById(R.id.welcometxt);
+
+
+        SharedPreferences prefs = getSharedPreferences("session", MODE_PRIVATE);
+        int userId = prefs.getInt("user_id", -1);
+
+        if (userId == -1) {
+            startActivity(new Intent(this, login_screen.class));
+            finish();
+        }
+
+        String username = getUsername(userId);
+        Welcometxt.setText("Welcome, "+username);
+
 
         logoutbtn.setOnClickListener(v ->{
             warning_dialog.show(
@@ -34,14 +52,10 @@ public class Dashboard_Screen extends AppCompatActivity {
                     "Cancel",
                     R.drawable.ic_logout,
                     () -> {
-                        Intent intent = new Intent(Dashboard_Screen.this, login_screen.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                        finish();
+                        logoutUser();
                     }
             );
         });
-
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -49,5 +63,36 @@ public class Dashboard_Screen extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    private void logoutUser() {
+        SharedPreferences prefs = getSharedPreferences("session", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();   // removes user_id and login state
+        editor.apply();
+
+        Intent intent = new Intent(Dashboard_Screen.this, login_screen.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    private String getUsername(int userId) {
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT username FROM users WHERE id = ?",
+                new String[]{String.valueOf(userId)}
+        );
+
+        String username = "";
+
+        if (cursor.moveToFirst()) {
+            username = cursor.getString(0);
+        }
+
+        cursor.close();
+        return username;
     }
 }
