@@ -18,7 +18,6 @@
         android:textColor="@color/blueGrey"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +25,7 @@
         android:id="@+id/brsessionname"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="84dp"
         android:fontFamily="@font/interfont"
         android:gravity="center"
         android:letterSpacing="0.1"
@@ -34,25 +33,21 @@
         android:textColor="@color/secondary"
         android:textFontWeight="700"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/breakcircularProgress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titletxt"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/breakcircularProgress"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="160dp"
         app:indicatorColor="@color/primary"
         app:indicatorInset="0dp"
         app:indicatorSize="250dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titletxt"
+        app:layout_constraintTop_toTopOf="parent"
         app:trackColor="@color/secondary"
         app:trackThickness="2dp" />
 
@@ -68,28 +63,29 @@
         app:layout_constraintEnd_toEndOf="@id/breakcircularProgress"
         app:layout_constraintStart_toStartOf="@id/breakcircularProgress"
         app:layout_constraintTop_toTopOf="@id/breakcircularProgress"
-        app:layout_constraintVertical_bias="0.535" />
+        app:layout_constraintVertical_bias="0.500" />
 
     <TextView
         android:id="@+id/breaksessionname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/interfont"
         android:letterSpacing="0.1"
-        android:text="BREAK SESSION"
+        android:text="Break Session"
         android:textColor="@color/blueGrey"
         app:layout_constraintBottom_toBottomOf="@+id/breakcircularProgress"
         app:layout_constraintEnd_toEndOf="@+id/breakcircularProgress"
         app:layout_constraintStart_toStartOf="@+id/breakcircularProgress"
         app:layout_constraintTop_toBottomOf="@+id/breaktimerText"
-        app:layout_constraintVertical_bias="0.22" />
+        app:layout_constraintVertical_bias="0.016" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSkipBreak"
         style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="104dp"
+        android:layout_marginBottom="60dp"
         android:layout_weight="1"
         android:backgroundTint="@color/very_light_grey"
         android:fontFamily="@font/interfont"
@@ -105,10 +101,7 @@
         app:iconTint="@color/secondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/breakcircularProgress"
-        app:layout_constraintVertical_bias="1.0"
         app:strokeColor="@color/blueGrey"
         app:strokeWidth="1dp" />
 
@@ -116,14 +109,14 @@
         android:id="@+id/imageView4"
         android:layout_width="140dp"
         android:layout_height="130dp"
-        android:tint="@color/secondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/breakcircularProgress"
-        app:layout_constraintVertical_bias="0.173"
-        app:srcCompat="@drawable/ic_self" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.765"
+        app:srcCompat="@drawable/ic_self"
+        app:tint="@color/secondary" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

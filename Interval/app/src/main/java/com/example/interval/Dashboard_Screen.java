@@ -34,7 +34,7 @@ public class Dashboard_Screen extends AppCompatActivity {
 
     private TextView tvStudyTime, tvBreakTime, tvSessionName;
 
-    private int studyMinutes = 25;
+    private int studyMinutes = 1;
     private int breakMinutes = 5;
     private String sessionName = "Study Session";
 

@@ -58,17 +58,16 @@
         android:id="@+id/circularProgress"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="84dp"
         android:indeterminate="false"
         android:max="100"
         android:progress="100"
         app:indicatorColor="@color/primary"
         app:indicatorInset="0dp"
         app:indicatorSize="250dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcometxt"
+        app:layout_constraintTop_toTopOf="parent"
         app:trackColor="@color/softgrey"
         app:trackThickness="2dp" />
 
@@ -99,16 +98,16 @@
         app:layout_constraintStart_toStartOf="@+id/circularProgress"
         app:layout_constraintTop_toBottomOf="@+id/timerText" />
 
-    <com.google.android.material.card.MaterialCardView
+    <!--<com.google.android.material.card.MaterialCardView
         android:id="@+id/cardAddTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:cardCornerRadius="20dp"
         app:cardElevation="6dp"
-        android:backgroundTint="@color/white">
+        android:backgroundTint="@color/white"
 
-    </com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>-->
 
     <LinearLayout
         android:id="@+id/linearLayout"
