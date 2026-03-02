@@ -76,6 +76,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(userId)}
         );
     }
+    public void updateSessionTitle(int sessionId, String newTitle) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE sessions SET title = ? WHERE id = ?",
+                new Object[]{newTitle, sessionId});
+        db.close();
+    }
     public void deleteSession(int sessionId) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM sessions WHERE id = ?", new Object[]{sessionId});

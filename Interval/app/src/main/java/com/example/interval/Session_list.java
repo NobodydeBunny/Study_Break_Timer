@@ -97,7 +97,6 @@ public class Session_list extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    // Turns "2025-06-01" → "Today", "Yesterday", or "Jun 1, 2025"
     private String formatHeader(String dateStr) {
         try {
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
