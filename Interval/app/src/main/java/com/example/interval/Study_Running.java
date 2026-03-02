@@ -3,6 +3,7 @@ package com.example.interval;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -36,6 +37,7 @@ public class Study_Running extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_study_running);
 
+
         studyTime   = getIntent().getIntExtra("studyTime", 25);
         breakTime   = getIntent().getIntExtra("breakTime", 5);
         sessionName = getIntent().getStringExtra("sessionName");
@@ -57,6 +59,7 @@ public class Study_Running extends AppCompatActivity {
         startTimer();
 
         btnPauseStart.setOnClickListener(v -> {
+            Timerutils.hapticTap(this);
             if (isPaused) {
                 resumeTimer();
             } else {
@@ -65,11 +68,13 @@ public class Study_Running extends AppCompatActivity {
         });
 
         btnStop.setOnClickListener(v -> {
+            Timerutils.hapticTap(this);
             if (countDownTimer != null) countDownTimer.cancel();
             finish();
         });
 
         btnSkip.setOnClickListener(v -> {
+            Timerutils.hapticTap(this);
             if (countDownTimer != null) countDownTimer.cancel();
             goToBreak();
         });
@@ -94,6 +99,11 @@ public class Study_Running extends AppCompatActivity {
             public void onFinish() {
                 circularProgress.setProgress(100);
                 timerText.setText("00:00");
+                Timerutils.hapticFinish(Study_Running.this);
+                getWindow().addFlags(
+                        WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
+                                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                );
                 goToBreak();
             }
         }.start();

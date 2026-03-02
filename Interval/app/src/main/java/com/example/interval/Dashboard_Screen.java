@@ -34,7 +34,7 @@ public class Dashboard_Screen extends AppCompatActivity {
 
     private TextView tvStudyTime, tvBreakTime, tvSessionName;
 
-    private int studyMinutes = 1;
+    private int studyMinutes = 25;
     private int breakMinutes = 5;
     private String sessionName = "Study Session";
 
@@ -76,6 +76,7 @@ public class Dashboard_Screen extends AppCompatActivity {
         animation();
 
         logoutbtn.setOnClickListener(v ->{
+            Timerutils.hapticTap(this);
             warning_dialog.show(
                     this,
                     "Logout",
@@ -90,6 +91,7 @@ public class Dashboard_Screen extends AppCompatActivity {
         });
 
         btnReset.setOnClickListener(v -> {
+            Timerutils.hapticTap(this);
             studyMinutes = 25;
             breakMinutes = 5;
             sessionName = "Study Session";
@@ -98,6 +100,7 @@ public class Dashboard_Screen extends AppCompatActivity {
         });
 
         btnStart.setOnClickListener(v -> {
+            Timerutils.hapticTap(this);
             Intent intent = new Intent(Dashboard_Screen.this, Study_Running.class);
 
             intent.putExtra("studyTime", studyMinutes);
@@ -108,10 +111,12 @@ public class Dashboard_Screen extends AppCompatActivity {
         });
 
         btnAdd.setOnClickListener(v -> {
+            Timerutils.hapticTap(this);
             startActivity(new Intent(this, Add_Session.class));
         });
 
         btnHistory.setOnClickListener(v -> {
+            Timerutils.hapticTap(this);
             startActivity(new Intent(this, Session_list.class));
         });
 
@@ -121,7 +126,6 @@ public class Dashboard_Screen extends AppCompatActivity {
             return insets;
         });
     }
-    // Functions ----------------------------------------------------------------------->
     private void updateUI() {
 
         tvStudyTime.setText(studyMinutes + " min");

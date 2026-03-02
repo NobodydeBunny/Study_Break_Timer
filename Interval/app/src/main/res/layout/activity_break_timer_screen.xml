@@ -42,13 +42,13 @@
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_marginTop="160dp"
-        app:indicatorColor="@color/primary"
+        app:indicatorColor="@color/secondary"
         app:indicatorInset="0dp"
         app:indicatorSize="250dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:trackColor="@color/secondary"
+        app:trackColor="@color/primary"
         app:trackThickness="2dp" />
 
     <TextView
