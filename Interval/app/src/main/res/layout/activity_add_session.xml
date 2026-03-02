@@ -169,7 +169,7 @@
             android:id="@+id/tvBreakDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="25"
+            android:text="5"
             android:textSize="40sp"
             android:textColor="@color/light_grey"/>
 

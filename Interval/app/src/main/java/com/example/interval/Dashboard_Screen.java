@@ -32,7 +32,7 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 public class Dashboard_Screen extends AppCompatActivity {
 
-    private TextView tvStudyTime, tvBreakTime, tvSessionName;
+    private TextView tvStudyTime, tvBreakTime, tvSessionName,tvTimer;
 
     private int studyMinutes = 25;
     private int breakMinutes = 5;
@@ -57,6 +57,7 @@ public class Dashboard_Screen extends AppCompatActivity {
         tvStudyTime = findViewById(R.id.txtStudyTime);
         tvBreakTime = findViewById(R.id.txtBreakTime);
         tvSessionName = findViewById(R.id.sessionname);
+        tvTimer = findViewById(R.id.timerText);
         MaterialButton btnReset = findViewById(R.id.btnReset);
         MaterialButton btnStart = findViewById(R.id.btnStartSession);
         MaterialButton btnAdd = findViewById(R.id.btnAdd);
@@ -126,11 +127,28 @@ public class Dashboard_Screen extends AppCompatActivity {
             return insets;
         });
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences prefs = getSharedPreferences("session", MODE_PRIVATE);
+        int userId = prefs.getInt("user_id", -1);
+
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        SessionModel session = dbHelper.getLatestSession(userId);
+
+        if (session != null) {
+            studyMinutes = session.getFocusTime();
+            breakMinutes = session.getRestTime();
+            sessionName = session.getTitle();
+            updateUI();
+        }
+    }
     private void updateUI() {
 
         tvStudyTime.setText(studyMinutes + " min");
         tvBreakTime.setText(breakMinutes + " min");
         tvSessionName.setText(sessionName);
+        tvTimer.setText(studyMinutes+":00");
     }
 
     private void logoutUser() {

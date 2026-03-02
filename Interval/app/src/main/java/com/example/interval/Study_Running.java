@@ -1,6 +1,8 @@
 package com.example.interval;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.WindowManager;
@@ -15,6 +17,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
+
+import java.util.Date;
+import java.util.Locale;
 
 public class Study_Running extends AppCompatActivity {
 
@@ -141,6 +146,13 @@ public class Study_Running extends AppCompatActivity {
     }
 
     private void goToBreak() {
+        SharedPreferences prefs = getSharedPreferences("session", MODE_PRIVATE);
+        int userId = prefs.getInt("user_id", -1);
+
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        dbHelper.insertSession(userId, sessionName, studyTime, breakTime, date, "run");
+
         Intent intent = new Intent(Study_Running.this, Break_Timer_Screen.class);
         intent.putExtra("breakTime", breakTime);
         intent.putExtra("sessionName", sessionName);
