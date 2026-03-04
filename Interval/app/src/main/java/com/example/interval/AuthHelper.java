@@ -44,9 +44,15 @@ public class AuthHelper {
             return "Error: Password must be at least 6 characters.";
         }
 
+        // Hash the input password to compare it with the hashed password in the database
+        String hashedInputPassword = PasswordHashUtil.hashPassword(password);
+
         // TODO: Replace this mock check with a real database call later
-        // For now, we use a hard-coded test account
-        if (email.equals("test@email.com") && password.equals("123456")) {
+        // Note: For demonstration, the mock test account password hash is shown here.
+        // Plain text "123456" = SHA-256 hash "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+        String mockHashedPassword = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92";
+
+        if (email.equals("test@email.com") && hashedInputPassword != null && hashedInputPassword.equals(mockHashedPassword)) {
             return "Login successful!";
         } else {
             return "Error: Invalid email or password.";
@@ -87,7 +93,11 @@ public class AuthHelper {
             return "Error: Passwords do not match.";
         }
 
-        // TODO: Save the new user to a database here later
+        // Hash the password before it should be saved to the database.
+        // Hashing ensures that even if the database is compromised, passwords are never stored in plain text.
+        String hashedPassword = PasswordHashUtil.hashPassword(password);
+        
+        // TODO: Save the new user (email and hashedPassword) to the database here later.
         return "Registration successful!";
     }
 }
