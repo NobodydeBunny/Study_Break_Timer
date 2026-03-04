@@ -1,14 +1,19 @@
 package com.example.interval;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 /**
  * AuthHelper.java
  *
  * Simple authentication helper for the Study Break Timer app.
- * Academic project - no database connection, no external libraries.
+ * Academic project - connected to SQLite database for user storage.
  *
  * Contains two functions:
- *   - login(email, password)    → returns a success or error message
- *   - register(email, password) → returns a success or error message
+ *   - login(context, email, password)    → returns a success or error message
+ *   - register(context, email, password, confirmPassword) → returns a success or error message
  *
  * Rules:
  *   - Email must not be empty
@@ -21,13 +26,14 @@ public class AuthHelper {
     // ---------------------------------------------------------------
 
     /**
-     * Validates login credentials.
+     * Validates login credentials against the SQLite database.
      *
+     * @param context  the application context to access DatabaseHelper
      * @param email    the user's email address
      * @param password the user's password
      * @return "Login successful!" on success, or an error message string on failure
      */
-    public static String login(String email, String password) {
+    public static String login(Context context, String email, String password) {
 
         // Check if email is empty
         if (email == null || email.trim().isEmpty()) {
@@ -39,20 +45,35 @@ public class AuthHelper {
             return "Error: Password cannot be empty.";
         }
 
-        // Check minimum password length (6 characters)
-        if (password.length() < 6) {
-            return "Error: Password must be at least 6 characters.";
-        }
-
         // Hash the input password to compare it with the hashed password in the database
         String hashedInputPassword = PasswordHashUtil.hashPassword(password);
+        if (hashedInputPassword == null) {
+            return "Error: Hashing failed.";
+        }
 
-        // TODO: Replace this mock check with a real database call later
-        // Note: For demonstration, the mock test account password hash is shown here.
-        // Plain text "123456" = SHA-256 hash "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
-        String mockHashedPassword = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92";
+        // Initialize DatabaseHelper to interact with SQLite
+        DatabaseHelper dbHelper = new DatabaseHelper(context);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        if (email.equals("test@email.com") && hashedInputPassword != null && hashedInputPassword.equals(mockHashedPassword)) {
+        // Query the 'users' table for a match with email and hashed password
+        String selection = DatabaseHelper.COLUMN_EMAIL + " = ? AND " + DatabaseHelper.COLUMN_PASSWORD + " = ?";
+        String[] selectionArgs = {email, hashedInputPassword};
+
+        Cursor cursor = db.query(
+                DatabaseHelper.TABLE_USERS,   // Table name
+                null,                         // All columns
+                selection,                    // Filter: email and password match
+                selectionArgs,                // Filter values
+                null,                         // No group by
+                null,                         // No having
+                null                          // No limit
+        );
+
+        boolean loginSuccess = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+
+        if (loginSuccess) {
             return "Login successful!";
         } else {
             return "Error: Invalid email or password.";
@@ -64,14 +85,15 @@ public class AuthHelper {
     // ---------------------------------------------------------------
 
     /**
-     * Validates registration details.
+     * Reigsters a new user in the SQLite database.
      *
+     * @param context         the application context to access DatabaseHelper
      * @param email           the user's email address
      * @param password        the user's chosen password
-     * @param confirmPassword the password typed a second time for confirmation
+     * @param confirmPassword the password confirmation
      * @return "Registration successful!" on success, or an error message string on failure
      */
-    public static String register(String email, String password, String confirmPassword) {
+    public static String register(Context context, String email, String password, String confirmPassword) {
 
         // Check if email is empty
         if (email == null || email.trim().isEmpty()) {
@@ -93,11 +115,41 @@ public class AuthHelper {
             return "Error: Passwords do not match.";
         }
 
-        // Hash the password before it should be saved to the database.
-        // Hashing ensures that even if the database is compromised, passwords are never stored in plain text.
+        // Initialize DatabaseHelper
+        DatabaseHelper dbHelper = new DatabaseHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        // Check if the email is already registered
+        String checkEmailQuery = "SELECT * FROM " + DatabaseHelper.TABLE_USERS + " WHERE " + DatabaseHelper.COLUMN_EMAIL + " = ?";
+        Cursor cursor = db.rawQuery(checkEmailQuery, new String[]{email});
+        if (cursor.getCount() > 0) {
+            cursor.close();
+            db.close();
+            return "Error: Email is already registered.";
+        }
+        cursor.close();
+
+        // Hash the password before saving for security
         String hashedPassword = PasswordHashUtil.hashPassword(password);
-        
-        // TODO: Save the new user (email and hashedPassword) to the database here later.
-        return "Registration successful!";
+        if (hashedPassword == null) {
+            db.close();
+            return "Error: Registration failed due to encryption error.";
+        }
+
+        // Prepare data for insertion
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHelper.COLUMN_EMAIL, email);
+        values.put(DatabaseHelper.COLUMN_PASSWORD, hashedPassword);
+
+        // Insert into the database
+        long result = db.insert(DatabaseHelper.TABLE_USERS, null, values);
+        db.close();
+
+        if (result == -1) {
+            return "Error: Database insertion failed.";
+        } else {
+            return "Registration successful!";
+        }
     }
 }
+

@@ -40,7 +40,7 @@ public class login_screen extends AppCompatActivity {
             passwordLayout.setError(null);
 
             // Use AuthHelper to validate and attempt login
-            String result = AuthHelper.login(email, password);
+            String result = AuthHelper.login(login_screen.this, email, password);
 
             if (result.equals("Login successful!")) {
                 // Login passed — go to Dashboard

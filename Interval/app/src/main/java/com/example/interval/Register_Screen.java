@@ -42,7 +42,7 @@ public class Register_Screen extends AppCompatActivity {
             String cp = confirmPassword.getText().toString();
 
             // Use AuthHelper to validate and register
-            String result = AuthHelper.register(email, p, cp);
+            String result = AuthHelper.register(Register_Screen.this, email, p, cp);
 
             // Show the result message (success or error)
             Toast.makeText(Register_Screen.this, result, Toast.LENGTH_SHORT).show();
