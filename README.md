@@ -214,7 +214,8 @@ Study_Break_Timer/
 │   │   ├── src/main/java/com/example/interval/
 │   │   └── src/main/res/
 │   └── build.gradle
-├── docs/              # Supporting documentation / screenshots
+├── docs/              # Supporting documentation 
+├── Screenshots/              # Screenshots
 └── README.md
 ```
 
