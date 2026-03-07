@@ -196,11 +196,11 @@ Run → Run 'app'  (Shift + F10)
 
 ## 👥 Team Members
 
-| Name | Role |
-|---|---|
-| **Sandakelum Kumarasiri** | *Lead Developer (UI/UX Design, Core Logic, Animation Engine, SQLite Integration)* |
-| **Raashidh Musaj** | *Project Documentation & Research* |
-| **H.A.T.M.Hettiarachchi** | *Quality Assurance & Testing* |
+| Name | Reg No |Index|
+|---|---|---|
+| **Sandakelum Kumarasiri** | *ICT/2022/136* | *5737* |
+| **Raashidh Musaj** | *ICT/2022/135* | *5736* |
+| **H.A.T.M.Hettiarachchi** | *ICT/2022/137* | *5738* |
 
 
 ---
