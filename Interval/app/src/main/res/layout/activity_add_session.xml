@@ -26,33 +26,33 @@
         android:id="@+id/addsessiontittle"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:fontFamily="@font/interfont"
         android:gravity="center"
+        android:letterSpacing="0.1"
         android:text="ADD SESSION"
         android:textColor="@color/muteIndigo"
-        android:letterSpacing="0.1"
         android:textFontWeight="700"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/sessionnametitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titletxt" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/sessionnametitle"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
+        android:letterSpacing="0.1"
         android:text="SESSION NAME"
         android:textColor="@color/blueGrey"
         android:textSize="15sp"
-        android:letterSpacing="0.1"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/etSessionName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addsessiontittle" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/etSessionName"
@@ -61,65 +61,64 @@
         android:background="@android:color/transparent"
         android:gravity="center"
         android:hint="Study Session"
-        android:textSize="20sp"
         android:textColorHint="@color/light_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sessionnametitle" />
+        android:textSize="20sp"
+        android:textColor="@color/primary"
+        app:layout_constraintBottom_toTopOf="@+id/titleDivider"
+        tools:layout_editor_absoluteX="0dp" />
 
     <View
         android:id="@+id/titleDivider"
         android:layout_width="100dp"
         android:layout_height="2dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/blueGrey"
+        app:layout_constraintBottom_toTopOf="@+id/studyduration"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etSessionName" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/studyduration"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
+        android:letterSpacing="0.1"
         android:text="STUDY DURATION "
         android:textColor="@color/blueGrey"
         android:textSize="15sp"
-        android:letterSpacing="0.1"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleDivider" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="4dp"
         android:orientation="horizontal"
         android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/titleDivider2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studyduration">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/tvStudyDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="25"
-            android:textSize="40sp"
-            android:textColor="@color/light_grey"/>
+            android:textColor="@color/primary"
+            android:textSize="40sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
+            android:fontFamily="@font/interfont"
             android:gravity="center"
             android:text="min"
-            android:fontFamily="@font/interfont"
             android:textColor="@color/blueGrey"
             android:textSize="25sp" />
     </LinearLayout>
@@ -128,50 +127,46 @@
         android:id="@+id/titleDivider2"
         android:layout_width="100dp"
         android:layout_height="2dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/blueGrey"
         app:layout_constraintBottom_toTopOf="@+id/breakduration"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/breakduration"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
+        android:letterSpacing="0.1"
         android:text="BREAK DURATION "
         android:textColor="@color/blueGrey"
         android:textSize="15sp"
-        android:letterSpacing="0.1"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout1" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="4dp"
         android:orientation="horizontal"
         android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/titleDivider3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/breakduration">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/tvBreakDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="5"
-            android:textSize="40sp"
-            android:textColor="@color/light_grey"/>
+            android:textColorHint="@color/light_grey"
+            android:textColor="@color/primary"
+            android:textSize="40sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -188,48 +183,45 @@
         android:id="@+id/titleDivider3"
         android:layout_width="100dp"
         android:layout_height="2dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginBottom="80dp"
         android:background="@color/blueGrey"
+        app:layout_constraintBottom_toTopOf="@+id/btnSaveSession"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSaveSession"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="12dp"
         android:backgroundTint="@color/primary"
+        android:letterSpacing="0.1"
         android:text="SAVE SESSION"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp"
-        android:letterSpacing="0.1"
         app:cornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCancel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleDivider3" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCancel"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="@color/very_light_grey"
+        android:letterSpacing="0.1"
         android:text="CANCEL"
         android:textAllCaps="false"
         android:textColor="@color/muteIndigo"
         android:textSize="16sp"
-        android:letterSpacing="0.1"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSaveSession"
-        app:layout_constraintVertical_bias="0.0"
         app:strokeColor="@color/blueGrey"
         app:strokeWidth="1dp" />
 
